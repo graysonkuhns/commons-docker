@@ -1,15 +1,10 @@
-# Xellitix Commons
+# Xellitix Commons - Docker
 
-Java libraries.
+Java Docker library.
 
 ## Status
 
 __Pre-Alpha__
-
-## Modules
-
-- Docker
-- Networking
 
 ## Style
 

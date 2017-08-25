@@ -4,24 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.xellitix.commons</groupId>
-    <artifactId>parent-pom</artifactId>
-    <version>0.1.0</version>
+    <parent>
+        <groupId>com.xellitix.commons</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>0.1.0</version>
+    </parent>
 
-    <modules>
-        <module>docker</module>
-        <module>net</module>
-    </modules>
-
-    <packaging>pom</packaging>
-    <name>Xellitix Commons - Parent POM</name>
-    <description>${project.name}</description>
-    <url>http://xellitix.com/</url>
-
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+    <artifactId>docker</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Xellitix Commons - Docker</name>
+    <description>Docker library</description>
 
     <licenses>
         <license>
@@ -30,172 +23,59 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <id>gkuhns</id>
-            <name>Grayson Kuhns</name>
-            <email>grayson.kuhns@xellitix.com</email>
-            <organization>Xellitix</organization>
-            <organizationUrl>http://xellitix.com/</organizationUrl>
-        </developer>
-    </developers>
-
     <scm>
-        <connection>scm:git:git://github.com/Xellitix/commons.git</connection>
-        <developerConnection>scm:git:ssh://github.com:Xellitix/commons.git</developerConnection>
-        <url>https://github.com/graysonkuhns/commons</url>
+        <connection>scm:git:git://github.com/Xellitix/commons-docker.git</connection>
+        <developerConnection>scm:git:ssh://github.com:Xellitix/commons-docker.git</developerConnection>
+        <url>https://github.com/Xellitix/commons-docker</url>
     </scm>
 
-    <distributionManagement>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-    </distributionManagement>
+    <dependencies>
+        <!-- Module dependencies -->
+        <dependency>
+            <groupId>com.xellitix.commons</groupId>
+            <artifactId>net</artifactId>
+            <version>0.1.0</version>
+        </dependency>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Core dependencies -->
-            <!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
-            <dependency>
-                <groupId>com.google.inject</groupId>
-                <artifactId>guice</artifactId>
-                <version>4.1.0</version>
-            </dependency>
+        <!-- Core dependencies -->
+        <!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/com.google.inject.extensions/guice-assistedinject -->
-            <dependency>
-                <groupId>com.google.inject.extensions</groupId>
-                <artifactId>guice-assistedinject</artifactId>
-                <version>4.1.0</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.inject.extensions/guice-assistedinject -->
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
-            <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <version>3.0.2</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+        </dependency>
 
-            <!-- Test dependencies -->
-            <!-- https://mvnrepository.com/artifact/junit/junit -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-            </dependency>
+        <!-- Test dependencies -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-all</artifactId>
-                <version>1.10.19</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <version>3.8.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
-
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <configuration>
-                            <configLocation>google_checks.xml</configLocation>
-                            <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
-                            <linkXRef>false</linkXRef>
-                        </configuration>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-
-                <dependencies>
-                    <!-- https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle -->
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>8.1</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
-
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.sonatype.plugins/nexus-staging-maven-plugin -->
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
