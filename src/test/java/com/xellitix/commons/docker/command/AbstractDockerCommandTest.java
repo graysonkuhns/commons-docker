@@ -36,7 +36,7 @@ public class AbstractDockerCommandTest {
   }
 
   /**
-   * Complete {@link AbstractDockerCommand} implementation used for testing.
+   * Complete {@link DockerCommand} implementation used for testing.
    *
    * @author Grayson Kuhns
    */

@@ -6,6 +6,8 @@ import java.io.Serializable;
 /**
  * Docker command model.
  *
+ *
+ *
  * @author Grayson Kuhns
  */
 public interface DockerCommand extends Serializable {
