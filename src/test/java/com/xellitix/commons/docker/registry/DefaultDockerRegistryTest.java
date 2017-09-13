@@ -37,13 +37,13 @@ public class DefaultDockerRegistryTest {
         .isEqualTo(ID);
   }
 
-  @Before
-  public void setUp() {
-    registry = new DefaultDockerRegistry(ENDPOINT);
-  }
-
   @BeforeClass
   public static void setUpClass() throws Exception {
     ENDPOINT = new URL("https://registry.company.com");
+  }
+
+  @Before
+  public void setUp() {
+    registry = new DefaultDockerRegistry(ENDPOINT);
   }
 }

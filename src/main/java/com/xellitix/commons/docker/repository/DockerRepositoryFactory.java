@@ -13,7 +13,7 @@ public interface DockerRepositoryFactory {
   /**
    * Creates a {@link DockerRepository}.
    *
-   * @param name     The name.
+   * @param name The name.
    * @param registry The {@link DockerRegistry}.
    * @return The {@link DockerRepository}.
    */
