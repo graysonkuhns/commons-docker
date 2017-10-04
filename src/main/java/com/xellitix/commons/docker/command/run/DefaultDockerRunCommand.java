@@ -23,7 +23,7 @@ public class DefaultDockerRunCommand
    */
   @Inject
   DefaultDockerRunCommand(@Assisted final DockerImage image) {
-    super(image);
+    super(image, null);
   }
 
   /**
