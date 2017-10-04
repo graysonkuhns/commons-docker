@@ -1,11 +1,57 @@
 package com.xellitix.commons.docker.command;
 
+import static org.mockito.Mockito.mock;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import com.xellitix.commons.docker.image.DockerImage;
+import org.junit.Before;
+import org.junit.Test;
+
 /**
- * Created by gkuhns on 9/12/17.
+ * {@link AbstractDockerCommandBuilder} test case.
+ *
+ * @author Grayson Kuhns
  */
 public class AbstractDockerCommandBuilderTest {
 
-  static class AbstractDockerCommandBuilderImpl extends AbstractDockerCommandBuilder {
+  // Fixtures
+  private DockerImage dockerImage;
+  private AbstractDockerCommandBuilderImpl commandBuilder;
 
+  @Test
+  public void dockerImageRoundTripTest() {
+    // Command builder should return itself
+    assertThat(commandBuilder
+        .withImage(dockerImage))
+        .isNotNull()
+        .isEqualTo(commandBuilder);
+
+    // Validate that image was stored
+    assertThat(commandBuilder
+        .getImage())
+        .isNotNull()
+        .isEqualTo(dockerImage);
+  }
+
+  @Before
+  public void setUp() {
+    // Docker image mocking
+    dockerImage = mock(DockerImage.class);
+
+    // Create the command builder
+    commandBuilder = new AbstractDockerCommandBuilderImpl();
+  }
+
+  static private class AbstractDockerCommandBuilderImpl extends AbstractDockerCommandBuilder {
+
+    /**
+     * Builds the {@link DockerCommand}.
+     *
+     * @return The {@link DockerCommand}.
+     */
+    @Override
+    public DockerCommand build() {
+      return null;
+    }
   }
 }
