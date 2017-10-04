@@ -20,7 +20,7 @@ public class AbstractDockerCommandTest {
   // Fixtures
   private DockerImage image;
   private List<Flag> flags;
-  private AbstractDockerCommandImpl command;
+  private AbstractDockerCommand<Flag> command;
 
   @Test
   public void getImageTest() {
@@ -42,12 +42,12 @@ public class AbstractDockerCommandTest {
   public void isFlagSetTest() {
     // Flag one is set
     assertThat(command
-        .isFlagSet(Flag.FLAG_ONE))
+        .isFlagSet(Flag.ONE))
         .isTrue();
 
     // Flag two is not set
     assertThat(command
-        .isFlagSet(Flag.FLAG_TWO))
+        .isFlagSet(Flag.TWO))
         .isFalse();
   }
 
@@ -58,26 +58,9 @@ public class AbstractDockerCommandTest {
 
     // Create flags
     flags = new ArrayList<>();
-    flags.add(Flag.FLAG_ONE);
+    flags.add(Flag.ONE);
 
     // Create the docker command
     command = new AbstractDockerCommandImpl(image, flags);
-  }
-
-  // Test data types
-  enum Flag {
-    FLAG_ONE,
-    FLAG_TWO
-  }
-
-  static private class AbstractDockerCommandImpl extends AbstractDockerCommand<Flag> {
-    AbstractDockerCommandImpl(final DockerImage image, final List<Flag> flags) {
-      super(image, flags);
-    }
-
-    @Override
-    public DockerCommandAction getAction() {
-      return null;
-    }
   }
 }

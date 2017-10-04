@@ -41,17 +41,4 @@ public class AbstractDockerCommandBuilderTest {
     // Create the command builder
     commandBuilder = new AbstractDockerCommandBuilderImpl();
   }
-
-  static private class AbstractDockerCommandBuilderImpl extends AbstractDockerCommandBuilder {
-
-    /**
-     * Builds the {@link DockerCommand}.
-     *
-     * @return The {@link DockerCommand}.
-     */
-    @Override
-    public DockerCommand build() {
-      return null;
-    }
-  }
 }
