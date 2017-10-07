@@ -2,9 +2,10 @@ package com.xellitix.commons.docker.command;
 
 import com.xellitix.commons.docker.image.DockerImage;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Default {@link DockerCommand} implementation.
+ * Partial {@link DockerCommand} implementation.
  *
  * @param <F> Flag type.
  *
@@ -13,26 +14,24 @@ import java.util.List;
 public abstract class AbstractDockerCommand<F extends Enum> implements DockerCommand<F> {
 
   // Properties
-  private final DockerImage image;
-  private final List<F> flags;
+  private final Set<F> flags;
 
   /**
    * Constructor.
    *
-   * @param image The {@link DockerImage}.
+   * @param flags The flags.
    */
-  public AbstractDockerCommand(final DockerImage image, final List<F> flags) {
-    this.image = image;
+  public AbstractDockerCommand(final Set<F> flags) {
     this.flags = flags;
   }
 
   /**
-   * Gets a {@link List} of set flags.
+   * Gets the flags.
    *
-   * @return A {@link List} of set flags.
+   * @return The flags.
    */
   @Override
-  public List<F> getFlags() {
+  public Set<F> getFlags() {
     return flags;
   }
 
@@ -45,15 +44,5 @@ public abstract class AbstractDockerCommand<F extends Enum> implements DockerCom
   @Override
   public boolean isFlagSet(final F flag) {
     return flags.contains(flag);
-  }
-
-  /**
-   * Gets the {@link DockerImage}.
-   *
-   * @return The {@link DockerImage}.
-   */
-  @Override
-  public DockerImage getImage() {
-    return image;
   }
 }

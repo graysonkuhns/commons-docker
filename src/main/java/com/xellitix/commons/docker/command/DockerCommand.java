@@ -3,6 +3,7 @@ package com.xellitix.commons.docker.command;
 import com.xellitix.commons.docker.image.DockerImage;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Docker command model.
@@ -21,11 +22,11 @@ public interface DockerCommand<F extends Enum> extends Serializable {
   DockerCommandAction getAction();
 
   /**
-   * Gets a {@link List} of set flags.
+   * Gets the flags.
    *
-   * @return A {@link List} of set flags.
+   * @return The flags.
    */
-  List<F> getFlags();
+  Set<F> getFlags();
 
   /**
    * Checks if a flag is set.
@@ -34,11 +35,4 @@ public interface DockerCommand<F extends Enum> extends Serializable {
    * @return True if the flag is set.
    */
   boolean isFlagSet(F flag);
-
-  /**
-   * Gets the {@link DockerImage}.
-   *
-   * @return The {@link DockerImage}.
-   */
-  DockerImage getImage();
 }

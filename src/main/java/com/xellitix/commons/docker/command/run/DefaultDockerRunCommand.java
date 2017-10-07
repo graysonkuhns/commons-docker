@@ -1,5 +1,6 @@
 package com.xellitix.commons.docker.command.run;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.xellitix.commons.docker.command.AbstractDockerCommand;
@@ -23,7 +24,7 @@ public class DefaultDockerRunCommand
    */
   @Inject
   DefaultDockerRunCommand(@Assisted final DockerImage image) {
-    super(image, null);
+    super(null);
   }
 
   /**

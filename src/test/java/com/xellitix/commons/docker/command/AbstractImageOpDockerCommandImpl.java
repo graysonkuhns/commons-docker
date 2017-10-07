@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * {@link AbstractDockerCommand} implementation.
+ * {@link AbstractImageOpDockerCommand} implementation.
  *
  * <p>
  *   Used for testing only.
@@ -13,15 +13,16 @@ import java.util.Set;
  *
  * @author Grayson Kuhns
  */
-class AbstractDockerCommandImpl extends AbstractDockerCommand<Flag> {
+public class AbstractImageOpDockerCommandImpl extends AbstractImageOpDockerCommand<Flag> {
 
   /**
    * Constructor.
    *
+   * @param image The {@link DockerImage}.
    * @param flags The command flags.
    */
-  AbstractDockerCommandImpl(final Set<Flag> flags) {
-    super(flags);
+  public AbstractImageOpDockerCommandImpl(final DockerImage image, final Set<Flag> flags) {
+    super(image, flags);
   }
 
   /**

@@ -5,8 +5,10 @@ import static org.mockito.Mockito.mock;
 
 import com.xellitix.commons.docker.image.DockerImage;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,17 +20,8 @@ import org.junit.Test;
 public class AbstractDockerCommandTest {
 
   // Fixtures
-  private DockerImage image;
-  private List<Flag> flags;
+  private Set<Flag> flags;
   private AbstractDockerCommand<Flag> command;
-
-  @Test
-  public void getImageTest() {
-    assertThat(command
-        .getImage())
-        .isNotNull()
-        .isEqualTo(image);
-  }
 
   @Test
   public void getFlagsTest() {
@@ -53,14 +46,11 @@ public class AbstractDockerCommandTest {
 
   @Before
   public void setUp() {
-    // Docker image mocking
-    image = mock(DockerImage.class);
-
     // Create flags
-    flags = new ArrayList<>();
+    flags = new HashSet<>();
     flags.add(Flag.ONE);
 
     // Create the docker command
-    command = new AbstractDockerCommandImpl(image, flags);
+    command = new AbstractDockerCommandImpl(flags);
   }
 }
