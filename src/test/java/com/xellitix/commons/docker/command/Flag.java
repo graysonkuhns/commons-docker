@@ -11,5 +11,6 @@ package com.xellitix.commons.docker.command;
  */
 enum Flag {
   ONE,
-  TWO
+  TWO,
+  THREE
 }

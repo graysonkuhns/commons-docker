@@ -11,21 +11,23 @@ import java.util.Set;
  *
  * @author Grayson Kuhns
  */
-public interface DockerCommandBuilder<F extends Enum, C extends DockerCommand<F>, B extends DockerCommandBuilder<F, C, B>> {
+public interface DockerCommandBuilder<F extends Enum, C extends DockerCommand<F>, B extends DockerCommandBuilder> {
 
   /**
    * Sets a flag.
    *
    * @param flag The flag.
+   * @return The {@link DockerCommandBuilder}.
    */
-  void setFlag(F flag);
+  B setFlag(F flag);
 
   /**
    * Sets the flags.
    *
    * @param flags The flags.
+   * @return The {@link DockerCommandBuilder}.
    */
-  void setFlags(Set<F> flags);
+  B setFlags(Set<F> flags);
 
   /**
    * Gets the flags.
@@ -36,8 +38,10 @@ public interface DockerCommandBuilder<F extends Enum, C extends DockerCommand<F>
 
   /**
    * Clears the flags.
+   *
+   * @return The {@link DockerCommandBuilder}.
    */
-  void clearFlags();
+  B clearFlags();
 
   /**
    * Sets the {@link DockerImage}.

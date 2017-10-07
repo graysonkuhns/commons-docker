@@ -9,17 +9,25 @@ import java.util.Set;
  *
  * @author Grayson Kuhns
  */
-public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends DockerCommand<F>, B extends AbstractDockerCommandBuilder<F, C, B>>
+public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends DockerCommand<F>, B extends AbstractDockerCommandBuilder>
     implements DockerCommandBuilder<F,C, B> {
 
+  // Constants
+  private static final String WRONG_CLAZZ_MSG_TEMPLATE =
+      "Expected the DockerCommandBuilder implementation (%s) to be an instance of %s";
+
   // Properties
+  private Class<B> clazz;
   private Set<F> flags;
   private DockerImage image = null;
 
   /**
    * Constructor.
+   *
+   * @param clazz The {@link DockerCommandBuilder} {@link Class}.
    */
-  public AbstractDockerCommandBuilder() {
+  public AbstractDockerCommandBuilder(final Class<B> clazz) {
+    this.clazz = clazz;
     flags = new HashSet<>();
     image = null;
   }
@@ -28,10 +36,14 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
    * Sets a flag.
    *
    * @param flag The flag.
+   * @return The {@link DockerCommandBuilder}.
    */
   @Override
-  public synchronized void setFlag(final F flag) {
+  public synchronized B setFlag(final F flag) {
     flags.add(flag);
+
+    // Enable method chaining
+    return getBuilder(clazz);
   }
 
   /**
@@ -40,8 +52,11 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
    * @param flags The flags.
    */
   @Override
-  public synchronized void setFlags(final Set<F> flags) {
-    this.flags = flags;
+  public synchronized B setFlags(final Set<F> flags) {
+    this.flags.addAll(flags);
+
+    // Enable method chaining
+    return getBuilder(clazz);
   }
 
   /**
@@ -58,8 +73,11 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
    * Clears the flags.
    */
   @Override
-  public synchronized void clearFlags() {
+  public synchronized B clearFlags() {
     flags.clear();
+
+    // Enable method chaining
+    return getBuilder(clazz);
   }
 
   /**
@@ -71,7 +89,9 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
   @Override
   public synchronized B withImage(final DockerImage image) {
     this.image = image;
-    return (B) this;
+
+    // Enable method chaining
+    return getBuilder(clazz);
   }
 
   /**
@@ -82,5 +102,22 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
   @Override
   public synchronized DockerImage getImage() {
     return image;
+  }
+
+  /**
+   * Gets the {@link DockerCommandBuilder}.
+   *
+   * @param clazz The {@link DockerCommandBuilder} {@link Class}.
+   * @return The {@link DockerCommandBuilder}.
+   */
+  protected B getBuilder(final Class<B> clazz) {
+    if (!clazz.isInstance(this)) {
+      throw new IllegalArgumentException(String.format(
+          WRONG_CLAZZ_MSG_TEMPLATE,
+          this.getClass().getName(),
+          clazz.getName()));
+    }
+
+    return clazz.cast(this);
   }
 }
