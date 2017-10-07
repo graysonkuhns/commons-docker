@@ -9,7 +9,8 @@ package com.xellitix.commons.docker.command;
  *
  * @author Grayson Kuhns
  */
-class AbstractDockerCommandBuilderImpl extends AbstractDockerCommandBuilder<Flag, AbstractDockerCommandImpl, AbstractDockerCommandBuilderImpl> {
+class AbstractDockerCommandBuilderImpl
+    extends AbstractDockerCommandBuilder<Flag, AbstractDockerCommandImpl, AbstractDockerCommandBuilderImpl> {
 
   /**
    * Constructor.

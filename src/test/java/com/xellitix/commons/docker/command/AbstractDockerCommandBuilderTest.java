@@ -29,7 +29,6 @@ public class AbstractDockerCommandBuilderTest {
   public ExpectedException thrown = ExpectedException.none();
 
   // Fixtures
-  private DockerImage dockerImage;
   private AbstractDockerCommandBuilderImpl commandBuilder;
 
   @Test
@@ -80,21 +79,6 @@ public class AbstractDockerCommandBuilderTest {
   }
 
   @Test
-  public void dockerImageRoundTripTest() {
-    // Command builder should return itself
-    assertThat(commandBuilder
-        .withImage(dockerImage))
-        .isNotNull()
-        .isEqualTo(commandBuilder);
-
-    // Validate that image was stored
-    assertThat(commandBuilder
-        .getImage())
-        .isNotNull()
-        .isEqualTo(dockerImage);
-  }
-
-  @Test
   public void invalidClazzCausesIllegalArgumentExceptionTest() {
     // Create a new AbstractDockerCommandBuilder implementation
     AbstractDockerCommandBuilder commandBuilder = new AbstractDockerCommandBuilder
@@ -116,9 +100,6 @@ public class AbstractDockerCommandBuilderTest {
 
   @Before
   public void setUp() {
-    // Docker image mocking
-    dockerImage = mock(DockerImage.class);
-
     // Create the command builder
     commandBuilder = new AbstractDockerCommandBuilderImpl();
   }

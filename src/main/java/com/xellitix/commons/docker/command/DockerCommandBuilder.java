@@ -1,11 +1,11 @@
 package com.xellitix.commons.docker.command;
 
-import com.xellitix.commons.docker.image.DockerImage;
 import java.util.Set;
 
 /**
  * {@link DockerCommand} builder.
  *
+ * @param <F> The {@link DockerCommand} flag type.
  * @param <C> The {@link DockerCommand} type.
  * @param <B> The {@link DockerCommandBuilder} type.
  *
@@ -42,21 +42,6 @@ public interface DockerCommandBuilder<F extends Enum, C extends DockerCommand<F>
    * @return The {@link DockerCommandBuilder}.
    */
   B clearFlags();
-
-  /**
-   * Sets the {@link DockerImage}.
-   *
-   * @param image The {@link DockerImage}.
-   * @return The {@link DockerCommandBuilder}.
-   */
-  B withImage(DockerImage image);
-
-  /**
-   * Gets the {@link DockerImage}.
-   *
-   * @return The {@link DockerImage}.
-   */
-  DockerImage getImage();
 
   /**
    * Builds the {@link DockerCommand}.

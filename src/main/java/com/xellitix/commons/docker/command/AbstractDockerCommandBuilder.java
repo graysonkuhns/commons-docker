@@ -5,7 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Abstract {@link DockerCommandBuilder} implementation.
+ * Partial {@link DockerCommandBuilder} implementation.
+ *
+ * @param <F> The {@link DockerCommand} flag type.
+ * @param <C> The {@link DockerCommand} type.
+ * @param <B> The {@link DockerCommandBuilder} type.
  *
  * @author Grayson Kuhns
  */
@@ -19,7 +23,6 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
   // Properties
   private Class<B> clazz;
   private Set<F> flags;
-  private DockerImage image = null;
 
   /**
    * Constructor.
@@ -29,7 +32,6 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
   public AbstractDockerCommandBuilder(final Class<B> clazz) {
     this.clazz = clazz;
     flags = new HashSet<>();
-    image = null;
   }
 
   /**
@@ -43,7 +45,7 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
     flags.add(flag);
 
     // Enable method chaining
-    return getBuilder(clazz);
+    return getBuilder();
   }
 
   /**
@@ -56,7 +58,7 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
     this.flags.addAll(flags);
 
     // Enable method chaining
-    return getBuilder(clazz);
+    return getBuilder();
   }
 
   /**
@@ -77,40 +79,15 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
     flags.clear();
 
     // Enable method chaining
-    return getBuilder(clazz);
-  }
-
-  /**
-   * Sets the {@link DockerImage}.
-   *
-   * @param image The {@link DockerImage}.
-   * @return The builder.
-   */
-  @Override
-  public synchronized B withImage(final DockerImage image) {
-    this.image = image;
-
-    // Enable method chaining
-    return getBuilder(clazz);
-  }
-
-  /**
-   * Gets the {@link DockerImage}.
-   *
-   * @return The {@link DockerImage}.
-   */
-  @Override
-  public synchronized DockerImage getImage() {
-    return image;
+    return getBuilder();
   }
 
   /**
    * Gets the {@link DockerCommandBuilder}.
    *
-   * @param clazz The {@link DockerCommandBuilder} {@link Class}.
    * @return The {@link DockerCommandBuilder}.
    */
-  protected B getBuilder(final Class<B> clazz) {
+  protected B getBuilder() {
     if (!clazz.isInstance(this)) {
       throw new IllegalArgumentException(String.format(
           WRONG_CLAZZ_MSG_TEMPLATE,
