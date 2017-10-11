@@ -33,6 +33,6 @@ public class AbstractImageOpDockerCommandTest {
     image = mock(DockerImage.class);
 
     // Create the Docker command
-    command = new AbstractImageOpDockerCommandImpl(image, ImmutableSet.of());
+    command = new AbstractImageOpDockerCommandImpl(ImmutableSet.of(), image);
   }
 }

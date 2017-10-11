@@ -18,11 +18,11 @@ public class AbstractImageOpDockerCommandImpl extends AbstractImageOpDockerComma
   /**
    * Constructor.
    *
-   * @param image The {@link DockerImage}.
    * @param flags The command flags.
+   * @param image The {@link DockerImage}.
    */
-  public AbstractImageOpDockerCommandImpl(final DockerImage image, final Set<Flag> flags) {
-    super(image, flags);
+  public AbstractImageOpDockerCommandImpl(final Set<Flag> flags, final DockerImage image) {
+    super(flags, image);
   }
 
   /**

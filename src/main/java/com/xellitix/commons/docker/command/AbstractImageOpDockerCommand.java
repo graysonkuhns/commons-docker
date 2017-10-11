@@ -21,10 +21,10 @@ public abstract class AbstractImageOpDockerCommand<F extends Enum>
   /**
    * Constructor.
    *
-   * @param image The {@link DockerImage}.
    * @param flags The flags.
+   * @param image The {@link DockerImage}.
    */
-  public AbstractImageOpDockerCommand(final DockerImage image, final Set<F> flags) {
+  public AbstractImageOpDockerCommand(final Set<F> flags, final DockerImage image) {
     super(flags);
     this.image = image;
   }
