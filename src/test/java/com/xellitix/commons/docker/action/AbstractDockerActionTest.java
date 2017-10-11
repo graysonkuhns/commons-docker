@@ -1,27 +1,23 @@
-package com.xellitix.commons.docker.command;
+package com.xellitix.commons.docker.action;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-import com.xellitix.commons.docker.image.DockerImage;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * {@link AbstractDockerCommand} test case.
+ * {@link AbstractDockerAction} test case.
  *
  * @author Grayson Kuhns
  */
-public class AbstractDockerCommandTest {
+public class AbstractDockerActionTest {
 
   // Fixtures
   private Set<Flag> flags;
-  private AbstractDockerCommand<Flag> command;
+  private AbstractDockerAction<Flag> command;
 
   @Test
   public void getFlagsTest() {
@@ -50,7 +46,7 @@ public class AbstractDockerCommandTest {
     flags = new HashSet<>();
     flags.add(Flag.ONE);
 
-    // Create the docker command
-    command = new AbstractDockerCommandImpl(flags);
+    // Create the docker action
+    command = new AbstractDockerActionImpl(flags);
   }
 }

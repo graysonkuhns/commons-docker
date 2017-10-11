@@ -1,35 +1,32 @@
-package com.xellitix.commons.docker.command;
+package com.xellitix.commons.docker.action;
 
 import static org.mockito.Mockito.mock;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.ImmutableSet;
-import com.xellitix.commons.docker.command.run.DockerRunCommand;
-import com.xellitix.commons.docker.image.DockerImage;
-import java.util.Set;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 /**
- * {@link AbstractDockerCommandBuilder} test case.
+ * {@link AbstractDockerActionBuilder} test case.
  *
  * @author Grayson Kuhns
  */
-public class AbstractDockerCommandBuilderTest {
+public class AbstractDockerActionBuilderTest {
 
   // Constants
-  private static final String WRONG_CLAZZ_MSG = "Expected the DockerCommandBuilder implementation " +
-      "(com.xellitix.commons.docker.command.AbstractDockerCommandBuilderTest$1) to be an instance " +
-      "of com.xellitix.commons.docker.command.AbstractDockerCommandBuilderImpl";
+  private static final String WRONG_CLAZZ_MSG = "Expected the DockerActionBuilder implementation " +
+      "(com.xellitix.commons.docker.action.AbstractDockerActionBuilderTest$1) to be an instance " +
+      "of com.xellitix.commons.docker.action.AbstractDockerActionBuilderImpl";
 
   // Rules
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 
   // Fixtures
-  private AbstractDockerCommandBuilderImpl commandBuilder;
+  private AbstractDockerActionBuilderImpl commandBuilder;
 
   @Test
   public void flagsRoundTripTest() {
@@ -80,12 +77,11 @@ public class AbstractDockerCommandBuilderTest {
 
   @Test
   public void invalidClazzCausesIllegalArgumentExceptionTest() {
-    // Create a new AbstractDockerCommandBuilder implementation
-    AbstractDockerCommandBuilder commandBuilder = new AbstractDockerCommandBuilder
-        <Enum, DockerCommand<Enum>, AbstractDockerCommandBuilderImpl>(AbstractDockerCommandBuilderImpl.class) {
+    // Create a new AbstractDockerActionBuilder implementation
+    AbstractDockerActionBuilder commandBuilder = new AbstractDockerActionBuilder<Enum, DockerAction<Enum>, AbstractDockerActionBuilderImpl>(AbstractDockerActionBuilderImpl.class) {
 
       @Override
-      public DockerCommand<Enum> build() {
+      public DockerAction<Enum> build() {
         return null;
       }
     };
@@ -94,13 +90,13 @@ public class AbstractDockerCommandBuilderTest {
     thrown.expect(IllegalArgumentException.class);
     thrown.expectMessage(WRONG_CLAZZ_MSG);
 
-    // Attempt an operation that returns an instance of the command builder
+    // Attempt an operation that returns an instance of the action builder
     commandBuilder.clearFlags();
   }
 
   @Before
   public void setUp() {
-    // Create the command builder
-    commandBuilder = new AbstractDockerCommandBuilderImpl();
+    // Create the action builder
+    commandBuilder = new AbstractDockerActionBuilderImpl();
   }
 }

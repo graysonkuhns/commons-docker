@@ -1,4 +1,4 @@
-package com.xellitix.commons.docker.command.run;
+package com.xellitix.commons.docker.action.run;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

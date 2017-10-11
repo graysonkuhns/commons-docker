@@ -1,4 +1,4 @@
-package com.xellitix.commons.docker.command;
+package com.xellitix.commons.docker.action;
 
 /**
  * Example Docker Command Flag.

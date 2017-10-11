@@ -1,17 +1,15 @@
-package com.xellitix.commons.docker.command;
+package com.xellitix.commons.docker.action;
 
-import com.xellitix.commons.docker.image.DockerImage;
-import java.util.List;
 import java.util.Set;
 
 /**
- * Partial {@link DockerCommand} implementation.
+ * Partial {@link DockerAction} implementation.
  *
  * @param <F> Flag type.
  *
  * @author Grayson Kuhns
  */
-public abstract class AbstractDockerCommand<F extends Enum> implements DockerCommand<F> {
+public abstract class AbstractDockerAction<F extends Enum> implements DockerAction<F> {
 
   // Properties
   private final Set<F> flags;
@@ -21,7 +19,7 @@ public abstract class AbstractDockerCommand<F extends Enum> implements DockerCom
    *
    * @param flags The flags.
    */
-  public AbstractDockerCommand(final Set<F> flags) {
+  public AbstractDockerAction(final Set<F> flags) {
     this.flags = flags;
   }
 

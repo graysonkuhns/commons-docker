@@ -1,21 +1,21 @@
-package com.xellitix.commons.docker.command.run;
+package com.xellitix.commons.docker.action.run;
 
 import com.xellitix.commons.docker.image.DockerImage;
 import java.util.Set;
 
 /**
- * {@link DockerRunCommand} factory.
+ * {@link DockerRunAction} factory.
  *
  * @author Grayson Kuhns
  */
 public interface DockerRunCommandFactory {
 
   /**
-   * Creates a {@link DockerRunCommand}.
+   * Creates a {@link DockerRunAction}.
    *
    * @param flags The flags.
    * @param image The {@link DockerImage} to run.
-   * @return The {@link DockerRunCommand}.
+   * @return The {@link DockerRunAction}.
    */
-  DockerRunCommand create(Set<DockerRunCommandFlag> flags, DockerImage image);
+  DockerRunAction create(Set<DockerRunCommandFlag> flags, DockerImage image);
 }

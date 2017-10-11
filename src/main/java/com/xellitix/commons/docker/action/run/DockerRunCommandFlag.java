@@ -1,7 +1,7 @@
-package com.xellitix.commons.docker.command.run;
+package com.xellitix.commons.docker.action.run;
 
 /**
- * {@link DockerRunCommand} flags.
+ * {@link DockerRunAction} flags.
  *
  * @author Grayson Kuhns
  */

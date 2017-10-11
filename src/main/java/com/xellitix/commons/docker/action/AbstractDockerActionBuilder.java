@@ -1,24 +1,23 @@
-package com.xellitix.commons.docker.command;
+package com.xellitix.commons.docker.action;
 
-import com.xellitix.commons.docker.image.DockerImage;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Partial {@link DockerCommandBuilder} implementation.
+ * Partial {@link DockerActionBuilder} implementation.
  *
- * @param <F> The {@link DockerCommand} flag type.
- * @param <C> The {@link DockerCommand} type.
- * @param <B> The {@link DockerCommandBuilder} type.
+ * @param <F> The {@link DockerAction} flag type.
+ * @param <C> The {@link DockerAction} type.
+ * @param <B> The {@link DockerActionBuilder} type.
  *
  * @author Grayson Kuhns
  */
-public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends DockerCommand<F>, B extends AbstractDockerCommandBuilder>
-    implements DockerCommandBuilder<F,C, B> {
+public abstract class AbstractDockerActionBuilder<F extends Enum, C extends DockerAction<F>, B extends AbstractDockerActionBuilder>
+    implements DockerActionBuilder<F,C, B> {
 
   // Constants
   private static final String WRONG_CLAZZ_MSG_TEMPLATE =
-      "Expected the DockerCommandBuilder implementation (%s) to be an instance of %s";
+      "Expected the DockerActionBuilder implementation (%s) to be an instance of %s";
 
   // Properties
   private Class<B> clazz;
@@ -27,9 +26,9 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
   /**
    * Constructor.
    *
-   * @param clazz The {@link DockerCommandBuilder} {@link Class}.
+   * @param clazz The {@link DockerActionBuilder} {@link Class}.
    */
-  public AbstractDockerCommandBuilder(final Class<B> clazz) {
+  public AbstractDockerActionBuilder(final Class<B> clazz) {
     this.clazz = clazz;
     flags = new HashSet<>();
   }
@@ -38,7 +37,7 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
    * Sets a flag.
    *
    * @param flag The flag.
-   * @return The {@link DockerCommandBuilder}.
+   * @return The {@link DockerActionBuilder}.
    */
   @Override
   public synchronized B setFlag(final F flag) {
@@ -83,9 +82,9 @@ public abstract class AbstractDockerCommandBuilder<F extends Enum, C extends Doc
   }
 
   /**
-   * Gets the {@link DockerCommandBuilder}.
+   * Gets the {@link DockerActionBuilder}.
    *
-   * @return The {@link DockerCommandBuilder}.
+   * @return The {@link DockerActionBuilder}.
    */
   protected B getBuilder() {
     if (!clazz.isInstance(this)) {
